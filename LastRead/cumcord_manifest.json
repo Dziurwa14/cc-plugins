@@ -1,0 +1,7 @@
+{
+  "name": "LastRead",
+  "description": "A plugin which uses a few factors to determine when the recipient in a direct conversation has last read your messages.",
+  "author": "THE CUMCORDIANS & Dziurwa",
+  "file": "lastread.js",
+  "license": "MIT"
+}
