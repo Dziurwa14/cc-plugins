@@ -1,6 +1,6 @@
 {
   "name": "Conflore",
-  "description": "Press F5 in the desired channel for the video. Thanks to Beef#5340 for the send feature and 3Li for True True Plugin",
+  "description": "Press ALT + F in the desired channel for the video. Thanks to Beef#5340 for the send feature and 3Li for True True Plugin",
   "author": "3Li & Dziurwa",
   "file": "conflore.js",
   "license": "MIT"
