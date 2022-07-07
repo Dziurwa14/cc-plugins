@@ -16,7 +16,8 @@ export default () => {
             id: args[1].id,
             name: args[1].surrogates || args[1].name
           },
-          channelId: args[0].id
+          channelId: args[0].id,
+          userId: findByProps("getCurrentUser").getCurrentUser().id
         })
       })
       // Sessions
