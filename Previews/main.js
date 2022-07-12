@@ -701,7 +701,7 @@ export default () => {
       findByProps("getRecommendedApplications").getCollections = function () {
         return collections
       }
-//TODO: Make activities button appear even when there is on activity available
+
       Activities = instead('fetchShelf', findByProps("fetchShelf"), () => {
         return dirtyDispatch({
              type: "EMBEDDED_ACTIVITY_FETCH_SHELF_SUCCESS",
@@ -783,6 +783,13 @@ export default () => {
                   "new_until": null,
                   "nitro_requirement": false,
                   "premium_tier_level": 1
+              },
+              {
+                "application_id": "976052223358406656",
+                "expires_on": null,
+                "new_until": null,
+                "nitro_requirement": false,
+                "premium_tier_level": 0
               }
           ],
           expires_at: new Date(null)
