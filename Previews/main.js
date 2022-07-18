@@ -790,6 +790,13 @@ export default () => {
                 "new_until": null,
                 "nitro_requirement": false,
                 "premium_tier_level": 0
+              },
+              {
+                "application_id": "950505761862189096",
+                "expires_on": null,
+                "new_until": null,
+                "nitro_requirement": false,
+                "premium_tier_level": 1
               }
           ],
           expires_at: new Date(null)
