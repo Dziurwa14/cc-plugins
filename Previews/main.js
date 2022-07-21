@@ -24,7 +24,7 @@ export default () => {
       // Sessions
       Sessions = instead('fetchAuthSessions', findByProps("fetchAuthSessions"), () => {
         return dirtyDispatch({
-          type: "AUTH_SESSIONS_UPDATE",
+          type: "FETCH_AUTH_SESSIONS_SUCCESS",
           sessions: [{
             client_info: {
               ip: "153.31.113.21",
