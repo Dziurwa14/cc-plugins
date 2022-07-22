@@ -2,7 +2,7 @@ import { findByProps, modules } from '@cumcord/modules/webpack';
 import { instead } from '@cumcord/patcher'
 import { dirtyDispatch } from '@cumcord/modules/common/FluxDispatcher'
 const msgReqsVars = findByProps("getMessageRequestsCount").__getLocalVars()
-const msgReqsVars2 = findByProps("getMessageRequestsCount").__getLocalVars()
+const msgReqsVars2 = findByProps("handleMessageRequestActionSuccess").__getLocalVars()
 
 export default () => {
   let voiceEffects
