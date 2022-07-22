@@ -1,12 +1,16 @@
 import { findByProps, modules } from '@cumcord/modules/webpack';
 import { instead } from '@cumcord/patcher'
 import { dirtyDispatch } from '@cumcord/modules/common/FluxDispatcher'
+const msgReqsVars = findByProps("getMessageRequestsCount").__getLocalVars()
+const msgReqsVars2 = findByProps("getMessageRequestsCount").__getLocalVars()
 
 export default () => {
   let voiceEffects
   let Sessions
   let Passport
   let Activities
+  let markAsMsgReq
+  let acceptMsgReq
   return {
     onLoad() {
       // Voice Effects
@@ -851,12 +855,21 @@ export default () => {
           expires_at: new Date(null)
       })
       })
+      // messageRequests
+      const messageRequests = [];
+      findByProps("getMessageRequestsCount").getSortedMessageRequestChannelIds = () => messageRequests;
+
+      markAsMsgReq = after('markAsMessageRequest', findByProps("markAsMessageRequest"), (args) => { messageRequests.push(args[0]); msgReqsVars.channelIds.add(args[0]); msgReqsVars2.pendingMessageRequests.add(args[0]); });
+
+      acceptMsgReq = after('acceptMessageRequest', findByProps("acceptMessageRequest"), (args) => { messageRequests.splice(1); msgReqsVars.channelIds.delete(args[0]); msgReqsVars2.pendingMessageRequests.delete(args[0]); });
     },
     onUnload() {
       voiceEffects()
       Sessions()
       Passport()
       Activities()
+      markAsMsgReq()
+      acceptMsgReq()
     }
   }
 }
