@@ -12,7 +12,7 @@ export default () => {
 findByPropsAll("getURL")[1].getURL = function(e){
   if(a.has(e)) return ""
   let c = findByProps("convert").convert.toCodePoint(e)
-  if(!s.includes(c)) return h(e)
+  if(!emojis.includes(c)) return h(e)
   return 'https://raw.githubusercontent.com/justsomederpystuff/fluent-emoji/main/static/' + c + '.png'
 }
  Fluent = injectCSS(`
