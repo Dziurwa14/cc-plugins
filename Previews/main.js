@@ -1,30 +1,18 @@
 import { findByProps, modules } from '@cumcord/modules/webpack';
-import { instead } from '@cumcord/patcher'
-import { dirtyDispatch } from '@cumcord/modules/common/FluxDispatcher'
-const msgReqsVars = findByProps("getMessageRequestsCount").__getLocalVars()
-const msgReqsVars2 = findByProps("handleMessageRequestActionSuccess").__getLocalVars()
+import { instead } from '@cumcord/patcher';
+import { dirtyDispatch } from '@cumcord/modules/common/FluxDispatcher';
+const msgReqsVars = findByProps("getMessageRequestsCount").__getLocalVars();
+const msgReqsVars2 = findByProps("handleMessageRequestActionSuccess").__getLocalVars();
 
 export default () => {
-  let voiceEffects
-  let Sessions
-  let Passport
-  let Activities
-  let markAsMsgReq
-  let acceptMsgReq
+    let Sessions
+    let Passport
+    let Activities
+    let markAsMsgReq
+    let acceptMsgReq
+    let soundboardSounds
   return {
     onLoad() {
-      // Voice Effects
-      voiceEffects = instead('sendVoiceChannelEffect', findByProps("sendVoiceChannelEffect"), (args) => {
-        return dirtyDispatch({
-          type: "VOICE_CHANNEL_EFFECT_SEND",
-          emoji: {
-            id: args[1].id,
-            name: args[1].surrogates || args[1].name
-          },
-          channelId: args[0].id,
-          userId: findByProps("getCurrentUser").getCurrentUser().id
-        })
-      })
       // Sessions
       Sessions = instead('fetchAuthSessions', findByProps("fetchAuthSessions"), () => {
         return dirtyDispatch({
@@ -36,7 +24,8 @@ export default () => {
               os: "windows"
             },
             approx_last_used_time: 0,
-            current: !0
+            current: !0,
+            id_hash: findByProps("getAuthSessionIdHash").getAuthSessionIdHash()
           }, {
             client_info: {
               ip: "6.6.6.6",
@@ -855,21 +844,290 @@ export default () => {
           expires_at: new Date(null)
       })
       })
-      // messageRequests
+      // Message Requests
       const messageRequests = [];
       findByProps("getMessageRequestsCount").getSortedMessageRequestChannelIds = () => messageRequests;
 
       markAsMsgReq = after('markAsMessageRequest', findByProps("markAsMessageRequest"), (args) => { messageRequests.push(args[0]); msgReqsVars.channelIds.add(args[0]); msgReqsVars2.pendingMessageRequests.add(args[0]); });
 
       acceptMsgReq = after('acceptMessageRequest', findByProps("acceptMessageRequest"), (args) => { messageRequests.splice(1); msgReqsVars.channelIds.delete(args[0]); msgReqsVars2.pendingMessageRequests.delete(args[0]); });
+
+      // Soundboard
+      soundboardSounds = after('fetchSoundsForGuild', findByProps('fetchSoundsForGuild'), (args) => {return FluxDispatcher.dirtyDispatch({
+        type: "GUILD_SOUNDBOARD_FETCH_SUCCESS",
+        guildId: args[0],
+        sounds:[
+          {
+              "name": "WOW",
+              "id": "974740386838904842",
+              "volume": 0.7512562870979309,
+              "user": {
+                  "id": "761650755337715733",
+                  "username": "kithri",
+                  "avatar": "c6b0683d5ae276bb1dc3579e39f6d993",
+                  "avatar_decoration": null,
+                  "discriminator": "1337",
+                  "public_flags": 256
+              }
+          },
+          {
+              "name": "LEGENDARY",
+              "id": "974741192350793788",
+              "volume": 0.6370886564254761,
+              "user": {
+                  "id": "761650755337715733",
+                  "username": "kithri",
+                  "avatar": "c6b0683d5ae276bb1dc3579e39f6d993",
+                  "avatar_decoration": null,
+                  "discriminator": "1337",
+                  "public_flags": 256
+              }
+          },
+          {
+              "name": "PENTAKILL",
+              "id": "974741263125446666",
+              "volume": 0.6180904507637024,
+              "user": {
+                  "id": "761650755337715733",
+                  "username": "kithri",
+                  "avatar": "c6b0683d5ae276bb1dc3579e39f6d993",
+                  "avatar_decoration": null,
+                  "discriminator": "1337",
+                  "public_flags": 256
+              }
+          },
+          {
+              "name": "STUCK IN TIME",
+              "id": "974742006561648660",
+              "volume": 0.8253953456878662,
+              "user": {
+                  "id": "761650755337715733",
+                  "username": "kithri",
+                  "avatar": "c6b0683d5ae276bb1dc3579e39f6d993",
+                  "avatar_decoration": null,
+                  "discriminator": "1337",
+                  "public_flags": 256
+              }
+          },
+          {
+              "name": "EXALT",
+              "id": "974744789675311134",
+              "volume": 1,
+              "user": {
+                  "id": "761650755337715733",
+                  "username": "kithri",
+                  "avatar": "c6b0683d5ae276bb1dc3579e39f6d993",
+                  "avatar_decoration": null,
+                  "discriminator": "1337",
+                  "public_flags": 256
+              }
+          },
+          {
+              "name": "YEAAAHAHAHAHA",
+              "id": "974747896576618597",
+              "volume": 0.4888227880001068,
+              "user": {
+                  "id": "761650755337715733",
+                  "username": "kithri",
+                  "avatar": "c6b0683d5ae276bb1dc3579e39f6d993",
+                  "avatar_decoration": null,
+                  "discriminator": "1337",
+                  "public_flags": 256
+              }
+          },
+          {
+              "name": "JEBAIT",
+              "id": "974830083783151706",
+              "volume": 0.8542713522911072,
+              "user": {
+                  "id": "761650755337715733",
+                  "username": "kithri",
+                  "avatar": "c6b0683d5ae276bb1dc3579e39f6d993",
+                  "avatar_decoration": null,
+                  "discriminator": "1337",
+                  "public_flags": 256
+              }
+          },
+          {
+              "name": "BRUH",
+              "id": "974830704078770196",
+              "volume": 0.6005024909973145,
+              "user": {
+                  "id": "761650755337715733",
+                  "username": "kithri",
+                  "avatar": "c6b0683d5ae276bb1dc3579e39f6d993",
+                  "avatar_decoration": null,
+                  "discriminator": "1337",
+                  "public_flags": 256
+              }
+          },
+          {
+              "name": "PH",
+              "id": "974830840028729405",
+              "volume": 0.7010050415992737,
+              "user": {
+                  "id": "761650755337715733",
+                  "username": "kithri",
+                  "avatar": "c6b0683d5ae276bb1dc3579e39f6d993",
+                  "avatar_decoration": null,
+                  "discriminator": "1337",
+                  "public_flags": 256
+              }
+          },
+          {
+              "name": "SPONGEBOB",
+              "id": "974831253075398727",
+              "volume": 0.7512562870979309,
+              "user": {
+                  "id": "761650755337715733",
+                  "username": "kithri",
+                  "avatar": "c6b0683d5ae276bb1dc3579e39f6d993",
+                  "avatar_decoration": null,
+                  "discriminator": "1337",
+                  "public_flags": 256
+              }
+          },
+          {
+              "name": "JEBAIT 2",
+              "id": "974831506239389726",
+              "volume": 1,
+              "user": {
+                  "id": "761650755337715733",
+                  "username": "kithri",
+                  "avatar": "c6b0683d5ae276bb1dc3579e39f6d993",
+                  "avatar_decoration": null,
+                  "discriminator": "1337",
+                  "public_flags": 256
+              }
+          },
+          {
+              "name": "You've Got Mail",
+              "id": "976271935329693716",
+              "volume": 1,
+              "user": {
+                  "id": "761650755337715733",
+                  "username": "kithri",
+                  "avatar": "c6b0683d5ae276bb1dc3579e39f6d993",
+                  "avatar_decoration": null,
+                  "discriminator": "1337",
+                  "public_flags": 256
+              }
+          },{
+              "name": "raze ult troll",
+              "id": "974704741676367904",
+              "volume": 0.5941102504730225,
+              "user": {
+                  "id": "540888726738567168",
+                  "username": "Zack.",
+                  "avatar": "9943d799676bf682ec6aa76acf51175f",
+                  "avatar_decoration": null,
+                  "discriminator": "1242",
+                  "public_flags": 0
+              }
+          },
+          {
+              "name": "boom",
+              "id": "974706412716445747",
+              "volume": 0.6025100946426392,
+              "user": {
+                  "id": "209769851651227648",
+                  "username": "Skyz",
+                  "avatar": "e85f7e1ea39edc8ed9b63ece0d9a9480",
+                  "avatar_decoration": null,
+                  "discriminator": "1234",
+                  "public_flags": 148224
+              }
+          },
+          {
+              "name": "hello there ig",
+              "id": "974712111756365884",
+              "volume": 1.0,
+              "user": {
+                  "id": "540888726738567168",
+                  "username": "Zack.",
+                  "avatar": "9943d799676bf682ec6aa76acf51175f",
+                  "avatar_decoration": null,
+                  "discriminator": "1242",
+                  "public_flags": 0
+              }
+          },
+          {
+              "name": "laugh",
+              "id": "974713720074821702",
+              "volume": 0.7063257694244385,
+              "user": {
+                  "id": "828387742575624222",
+                  "username": "Jup",
+                  "avatar": "cd0bacf54def8cb52006cb64910ab785",
+                  "avatar_decoration": null,
+                  "discriminator": "1337",
+                  "public_flags": 16640
+              }
+          },
+          {
+              "name": "gong",
+              "id": "974891021198557214",
+              "volume": 1.0,
+              "user": {
+                  "id": "506498700332236810",
+                  "username": "conqr",
+                  "avatar": "e7b109bc7ea75139340925d95ea9bcc5",
+                  "avatar_decoration": null,
+                  "discriminator": "0001",
+                  "public_flags": 131072
+              }
+          },
+          {
+              "name": "sus",
+              "id": "974891909107564545",
+              "volume": 1.0,
+              "user": {
+                  "id": "506498700332236810",
+                  "username": "conqr",
+                  "avatar": "e7b109bc7ea75139340925d95ea9bcc5",
+                  "avatar_decoration": null,
+                  "discriminator": "0001",
+                  "public_flags": 131072
+              }
+          },
+          {
+              "name": "kill",
+              "id": "974892667597115452",
+              "volume": 1.0,
+              "user": {
+                  "id": "506498700332236810",
+                  "username": "conqr",
+                  "avatar": "e7b109bc7ea75139340925d95ea9bcc5",
+                  "avatar_decoration": null,
+                  "discriminator": "0001",
+                  "public_flags": 131072
+              }
+          },
+          {
+              "name": "Well Excuse Me Princess",
+              "id": "1002030051908390972",
+              "volume": 1.0,
+              "user": {
+                  "id": "200987752794292224",
+                  "username": "NaviKing",
+                  "avatar": "a_ad10b77bb6b8a28ade862a699dd1fc01",
+                  "avatar_decoration": null,
+                  "discriminator": "3820",
+                  "public_flags": 393858
+              }
+          }
+      ]
+      })})
     },
+
+
     onUnload() {
-      voiceEffects()
       Sessions()
       Passport()
       Activities()
       markAsMsgReq()
       acceptMsgReq()
+      soundboardSounds()
     }
   }
 }
