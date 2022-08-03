@@ -1,6 +1,6 @@
 import { findByProps, modules } from '@cumcord/modules/webpack';
 import { instead } from '@cumcord/patcher';
-import { dirtyDispatch } from '@cumcord/modules/common/FluxDispatcher';
+import { dispatch } from '@cumcord/modules/common/FluxDispatcher';
 const msgReqsVars = findByProps("getMessageRequestsCount").__getLocalVars();
 const msgReqsVars2 = findByProps("handleMessageRequestActionSuccess").__getLocalVars();
 
@@ -15,7 +15,7 @@ export default () => {
     onLoad() {
       // Sessions
       Sessions = instead('fetchAuthSessions', findByProps("fetchAuthSessions"), () => {
-        return dirtyDispatch({
+        return dispatch({
           type: "FETCH_AUTH_SESSIONS_SUCCESS",
           sessions: [{
             client_info: {
@@ -745,7 +745,7 @@ export default () => {
       }
 
       Activities = instead('fetchShelf', findByProps("fetchShelf"), () => {
-        return dirtyDispatch({
+        return dispatch({
              type: "EMBEDDED_ACTIVITY_FETCH_SHELF_SUCCESS",
              guildId: findByProps("getLastSelectedGuildId").getLastSelectedGuildId(),
              items: [
@@ -853,7 +853,7 @@ export default () => {
       acceptMsgReq = after('acceptMessageRequest', findByProps("acceptMessageRequest"), (args) => { messageRequests.splice(1); msgReqsVars.channelIds.delete(args[0]); msgReqsVars2.pendingMessageRequests.delete(args[0]); });
 
       // Soundboard
-      soundboardSounds = after('fetchSoundsForGuild', findByProps('fetchSoundsForGuild'), (args) => {return FluxDispatcher.dirtyDispatch({
+      soundboardSounds = after('fetchSoundsForGuild', findByProps('fetchSoundsForGuild'), (args) => {return FluxDispatcher.dispatch({
         type: "GUILD_SOUNDBOARD_FETCH_SUCCESS",
         guildId: args[0],
         sounds:[
