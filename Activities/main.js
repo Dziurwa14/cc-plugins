@@ -1,13 +1,13 @@
 import { findByProps } from '@cumcord/modules/webpack';
 import { instead } from '@cumcord/patcher'
-import { dirtyDispatch } from '@cumcord/modules/common/FluxDispatcher'
+import { dispatch } from '@cumcord/modules/common/FluxDispatcher'
 
 export default () => {
   let Activities
   return {
     onLoad() {
       Activities = instead('fetchShelf', findByProps("fetchShelf"), () => {
-        return dirtyDispatch({
+        return dispatch({
              type: "EMBEDDED_ACTIVITY_FETCH_SHELF_SUCCESS",
              guildId: findByProps("getLastSelectedGuildId").getLastSelectedGuildId(),
              items: [
