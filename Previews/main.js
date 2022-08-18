@@ -12,6 +12,7 @@ export default () => {
   let msgReqsArray
   let soundboardSounds
   let avatarDecos
+  let assignRole
   return {
     onLoad() {
       // Sessions
@@ -174,7 +175,9 @@ export default () => {
         return [
           passportConfig
         ]
-      }
+      },
+      assignRole = instead("assignGuildRoleConnection",findByProps('assignGuildRoleConnection'),() => {return});
+
       // App Directory
       const collections = [{
         "id": "815369174096412693",
@@ -994,6 +997,7 @@ export default () => {
       msgReqsVars.channelIds.clear()
       soundboardSounds()
       avatarDecos()
+      assignRole()
     }
   }
 }
