@@ -33,7 +33,7 @@ export default () => {
                   "expires_on": null,
                   "new_until": null,
                   "nitro_requirement": false,
-                  "premium_tier_level": 0
+                  "premium_tier_level": 1
               },
               {
                   "application_id": "832025144389533716",
@@ -113,7 +113,6 @@ export default () => {
                 "premium_tier_level": 0
               }
           ],
-          expires_at: new Date(null)
       })
       })
     },
