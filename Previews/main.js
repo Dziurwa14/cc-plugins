@@ -1,17 +1,25 @@
-import { findByProps, modules, findByPropsAll } from '@cumcord/modules/webpack';
-import { instead } from '@cumcord/patcher';
-import { dispatch } from '@cumcord/modules/common/FluxDispatcher';
+import {
+  findByProps,
+  modules,
+  findByPropsAll
+} from '@cumcord/modules/webpack';
+import {
+  instead
+} from '@cumcord/patcher';
+import {
+  dispatch
+} from '@cumcord/modules/common/FluxDispatcher';
 const msgReqsVars = findByProps("getMessageRequestsCount").__getLocalVars();
 
 export default () => {
-    let Sessions
-    let Passport
-    let Activities
-    let markAsMsgReq
-    let acceptMsgReq
-    let msgReqsArray
-    let soundboardSounds
-    let avatarDecos
+  let Sessions
+  let Passport
+  let Activities
+  let markAsMsgReq
+  let acceptMsgReq
+  let msgReqsArray
+  let soundboardSounds
+  let avatarDecos
   return {
     onLoad() {
       // Sessions
@@ -20,157 +28,161 @@ export default () => {
           type: "FETCH_AUTH_SESSIONS_SUCCESS",
           sessions: [{
             client_info: {
-              ip: "153.31.113.21",
               platform: "Discord Canary",
-              os: "windows"
+              os: "windows",
+              location: "USA"
             },
             approx_last_used_time: 0,
             current: !0,
             id_hash: findByProps("getAuthSessionIdHash").getAuthSessionIdHash()
           }, {
             client_info: {
-              ip: "6.6.6.6",
               platform: "Discord iOS",
-              os: "ios"
+              os: "ios",
+              location: "USA"
             },
             approx_last_used_time: 0,
-            current: !1
+            current: !1,
+            id_hash: "Preview"
           }, {
             client_info: {
-              ip: "42.69.42.69",
               platform: "Discord Android",
-              os: "android"
+              os: "android",
+              location: "Germany"
             },
             approx_last_used_time: 1656525039492,
-            current: !1
+            current: !1,
+            id_hash: "Preview"
           }, {
             client_info: {
-              ip: "149.101.242.0",
               platform: "Discord Web",
-              os: "windows"
+              os: "windows",
+              location: "Poland"
             },
             approx_last_used_time: 1056525039492,
-            current: !1
+            current: !1,
+            id_hash: "Preview"
           }]
         })
       })
       // Passports
-      Passport = instead('default', modules[507825].exports, () => {return true})
-        const passportConfig = [
-          {
-            connection_type: "reddit",
-            result: 1
-          }, {
-            connection_type: "twitter",
-            result: 1
-          }, {
-            connection_type: "steam",
-            result: 1
-          }, {
-            connection_type: "github",
-            result: 1
-          }, {
-            connection_type: "spotify",
-            result: 1
-          }, {
-            connection_type: "playstation",
-            result: 1
-          }, {
-            connection_type: "xbox",
-            result: 1
-          }, {
-            connection_type: "battlenet",
-            result: 1
-          }, {
-            connection_type: "epicgames",
-            result: 1
-          }, {
-            connection_type: "facebook",
-            result: 1
-          }, {
-            connection_type: "twitch",
-            result: 1
-          }, {
-            connection_type: "youtube",
-            result: 1
-          }, {
-            connection_type: "reddit",
-            connection_metadata_field: "created_at",
-            operator: 4,
-            value: "89",
-            result: 1
-          }, {
-            connection_type: "reddit",
-            connection_metadata_field: "mod",
-            operator: 1,
-            value: "1",
-            result: 1
-          }, {
-            connection_type: "reddit",
-            connection_metadata_field: "gold",
-            operator: 1,
-            value: "1",
-            result: 1
-          }, {
-            connection_type: "reddit",
-            connection_metadata_field: "total_karma",
-            operator: 4,
-            value: "999",
-            result: 1
-          }, {
-            connection_type: "twitter",
-            connection_metadata_field: "created_at",
-            operator: 4,
-            value: "362",
-            result: 1
-          }, {
-            connection_type: "twitter",
-            connection_metadata_field: "followers_count",
-            operator: 4,
-            value: "99999",
-            result: 1
-          }, {
-            connection_type: "twitter",
-            connection_metadata_field: "statuses_count",
-            operator: 4,
-            value: "99",
-            result: 1
-          }, {
-            connection_type: "twitter",
-            connection_metadata_field: "verified",
-            operator: 1,
-            value: "1",
-            result: 1
-          }, {
-            connection_type: "steam",
-            connection_metadata_field: "created_at",
-            operator: 4,
-            value: "149",
-            result: 1
-          }, {
-            connection_type: "steam",
-            connection_metadata_field: "game_count",
-            operator: 4,
-            value: "35",
-            result: 1
-          }, {
-            connection_type: "steam",
-            connection_metadata_field: "item_count_dota2",
-            operator: 4,
-            value: "19",
-            result: 1
-          }, {
-            connection_type: "steam",
-            connection_metadata_field: "item_count_tf2",
-            operator: 4,
-            value: "41",
-            result: 1
-          }]
-        findByProps("fetchGuildRoleConnectionsEligibility").fetchGuildRoleConnectionsEligibility = async function(e, t) {
-          return [
-            passportConfig
-          ]
-        }
+      Passport = instead('default', modules[507825].exports, () => {
+        return true
+      })
+      const passportConfig = [{
+        connection_type: "reddit",
+        result: 1
+      }, {
+        connection_type: "twitter",
+        result: 1
+      }, {
+        connection_type: "steam",
+        result: 1
+      }, {
+        connection_type: "github",
+        result: 1
+      }, {
+        connection_type: "spotify",
+        result: 1
+      }, {
+        connection_type: "playstation",
+        result: 1
+      }, {
+        connection_type: "xbox",
+        result: 1
+      }, {
+        connection_type: "battlenet",
+        result: 1
+      }, {
+        connection_type: "epicgames",
+        result: 1
+      }, {
+        connection_type: "facebook",
+        result: 1
+      }, {
+        connection_type: "twitch",
+        result: 1
+      }, {
+        connection_type: "youtube",
+        result: 1
+      }, {
+        connection_type: "reddit",
+        connection_metadata_field: "created_at",
+        operator: 4,
+        value: "89",
+        result: 1
+      }, {
+        connection_type: "reddit",
+        connection_metadata_field: "mod",
+        operator: 1,
+        value: "1",
+        result: 1
+      }, {
+        connection_type: "reddit",
+        connection_metadata_field: "gold",
+        operator: 1,
+        value: "1",
+        result: 1
+      }, {
+        connection_type: "reddit",
+        connection_metadata_field: "total_karma",
+        operator: 4,
+        value: "999",
+        result: 1
+      }, {
+        connection_type: "twitter",
+        connection_metadata_field: "created_at",
+        operator: 4,
+        value: "362",
+        result: 1
+      }, {
+        connection_type: "twitter",
+        connection_metadata_field: "followers_count",
+        operator: 4,
+        value: "99999",
+        result: 1
+      }, {
+        connection_type: "twitter",
+        connection_metadata_field: "statuses_count",
+        operator: 4,
+        value: "99",
+        result: 1
+      }, {
+        connection_type: "twitter",
+        connection_metadata_field: "verified",
+        operator: 1,
+        value: "1",
+        result: 1
+      }, {
+        connection_type: "steam",
+        connection_metadata_field: "created_at",
+        operator: 4,
+        value: "149",
+        result: 1
+      }, {
+        connection_type: "steam",
+        connection_metadata_field: "game_count",
+        operator: 4,
+        value: "35",
+        result: 1
+      }, {
+        connection_type: "steam",
+        connection_metadata_field: "item_count_dota2",
+        operator: 4,
+        value: "19",
+        result: 1
+      }, {
+        connection_type: "steam",
+        connection_metadata_field: "item_count_tf2",
+        operator: 4,
+        value: "41",
+        result: 1
+      }]
+      findByProps("fetchGuildRoleConnectionsEligibility").fetchGuildRoleConnectionsEligibility = async function (e, t) {
+        return [
+          passportConfig
+        ]
+      }
       // App Directory
       const collections = [{
         "id": "815369174096412693",
@@ -747,256 +759,239 @@ export default () => {
 
       Activities = instead('fetchShelf', findByProps("fetchShelf"), () => {
         return dispatch({
-             type: "EMBEDDED_ACTIVITY_FETCH_SHELF_SUCCESS",
-             guildId: findByProps("getLastSelectedGuildId").getLastSelectedGuildId(),
-             items: [
-              {
-                  "application_id": "880218394199220334",
-                  "expires_on": null,
-                  "new_until": null,
-                  "nitro_requirement": false,
-                  "premium_tier_level": 0
-              },
-              {
-                  "application_id": "945737671223947305",
-                  "expires_on": null,
-                  "new_until": null,
-                  "nitro_requirement": false,
-                  "premium_tier_level": 1
-              },
-              {
-                  "application_id": "903769130790969345",
-                  "expires_on": null,
-                  "new_until": null,
-                  "nitro_requirement": false,
-                  "premium_tier_level": 0
-              },
-              {
-                  "application_id": "832025144389533716",
-                  "expires_on": null,
-                  "new_until": null,
-                  "nitro_requirement": false,
-                  "premium_tier_level": 1
-              },
-              {
-                  "application_id": "832013003968348200",
-                  "expires_on": null,
-                  "new_until": null,
-                  "nitro_requirement": false,
-                  "premium_tier_level": 1
-              },
-              {
-                  "application_id": "852509694341283871",
-                  "expires_on": null,
-                  "new_until": null,
-                  "nitro_requirement": false,
-                  "premium_tier_level": 1
-              },
-              {
-                  "application_id": "902271654783242291",
-                  "expires_on": null,
-                  "new_until": null,
-                  "nitro_requirement": false,
-                  "premium_tier_level": 1
-              },
-              {
-                  "application_id": "879863686565621790",
-                  "expires_on": null,
-                  "new_until": null,
-                  "nitro_requirement": false,
-                  "premium_tier_level": 1
-              },
-              {
-                  "application_id": "832012774040141894",
-                  "expires_on": null,
-                  "new_until": null,
-                  "nitro_requirement": false,
-                  "premium_tier_level": 1
-              },
-              {
-                  "application_id": "755827207812677713",
-                  "expires_on": null,
-                  "new_until": null,
-                  "nitro_requirement": false,
-                  "premium_tier_level": 1
-              },
-              {
-                  "application_id": "947957217959759964",
-                  "expires_on": null,
-                  "new_until": null,
-                  "nitro_requirement": false,
-                  "premium_tier_level": 1
-              },
-              {
-                "application_id": "976052223358406656",
+          type: "EMBEDDED_ACTIVITY_FETCH_SHELF_SUCCESS",
+          guildId: findByProps("getLastSelectedGuildId").getLastSelectedGuildId(),
+          items: [
+            {
+                "application_id": "880218394199220334",
                 "expires_on": null,
                 "new_until": null,
                 "nitro_requirement": false,
                 "premium_tier_level": 0
-              },
-              {
-                "application_id": "950505761862189096",
+            },
+            {
+                "application_id": "945737671223947305",
                 "expires_on": null,
                 "new_until": null,
                 "nitro_requirement": false,
                 "premium_tier_level": 1
-              }
-          ],
+            },
+            {
+                "application_id": "903769130790969345",
+                "expires_on": null,
+                "new_until": null,
+                "nitro_requirement": false,
+                "premium_tier_level": 0
+            },
+            {
+                "application_id": "832025144389533716",
+                "expires_on": null,
+                "new_until": null,
+                "nitro_requirement": false,
+                "premium_tier_level": 1
+            },
+            {
+                "application_id": "832013003968348200",
+                "expires_on": null,
+                "new_until": null,
+                "nitro_requirement": false,
+                "premium_tier_level": 1
+            },
+            {
+                "application_id": "852509694341283871",
+                "expires_on": null,
+                "new_until": null,
+                "nitro_requirement": false,
+                "premium_tier_level": 1
+            },
+            {
+                "application_id": "902271654783242291",
+                "expires_on": null,
+                "new_until": null,
+                "nitro_requirement": false,
+                "premium_tier_level": 1
+            },
+            {
+                "application_id": "879863686565621790",
+                "expires_on": null,
+                "new_until": null,
+                "nitro_requirement": false,
+                "premium_tier_level": 1
+            },
+            {
+                "application_id": "832012774040141894",
+                "expires_on": null,
+                "new_until": null,
+                "nitro_requirement": false,
+                "premium_tier_level": 1
+            },
+            {
+                "application_id": "755827207812677713",
+                "expires_on": null,
+                "new_until": null,
+                "nitro_requirement": false,
+                "premium_tier_level": 1
+            },
+            {
+                "application_id": "947957217959759964",
+                "expires_on": null,
+                "new_until": null,
+                "nitro_requirement": false,
+                "premium_tier_level": 1
+            },
+            {
+              "application_id": "976052223358406656",
+              "expires_on": null,
+              "new_until": null,
+              "nitro_requirement": false,
+              "premium_tier_level": 0
+            },
+            {
+              "application_id": "950505761862189096",
+              "expires_on": null,
+              "new_until": null,
+              "nitro_requirement": false,
+              "premium_tier_level": 0
+            }
+        ],
           expires_at: new Date(null)
-      })
+        })
       })
       // Message Requests (Requires Staff flag probably will patch it later so you can use it without it)
       const messageRequests = []
-      msgReqsArray = instead('getSortedMessageRequestChannelIds',findByProps("getMessageRequestsCount"), () => messageRequests);
-      markAsMsgReq = after('markAsMessageRequest', findByProps("markAsMessageRequest"), (args) => { messageRequests.push(args[0]); msgReqsVars.channelIds.add(args[0])});
-      acceptMsgReq = after('acceptMessageRequest', findByProps("acceptMessageRequest"), (args) => { let h = messageRequests.indexOf(args[0]);messageRequests.splice(h,1); msgReqsVars.channelIds.delete(args[0])});
+      msgReqsArray = instead('getSortedMessageRequestChannelIds', findByProps("getMessageRequestsCount"), () => messageRequests);
+      markAsMsgReq = after('markAsMessageRequest', findByProps("markAsMessageRequest"), (args) => {
+        messageRequests.push(args[0]);
+        msgReqsVars.channelIds.add(args[0])
+      });
+      acceptMsgReq = after('acceptMessageRequest', findByProps("acceptMessageRequest"), (args) => {
+        let h = messageRequests.indexOf(args[0]);
+        messageRequests.splice(h, 1);
+        msgReqsVars.channelIds.delete(args[0])
+      });
 
       // Soundboard
-      soundboardSounds = after('fetchSoundsForGuild', findByProps('fetchSoundsForGuild'), (args) => {return dispatch({
-        type: "GUILD_SOUNDBOARD_FETCH_SUCCESS",
-        guildId: args[0],
-        sounds:[
-          {
+      soundboardSounds = after('fetchSoundsForGuild', findByProps('fetchSoundsForGuild'), (args) => {
+        return dispatch({
+          type: "GUILD_SOUNDBOARD_FETCH_SUCCESS",
+          guildId: args[0],
+          sounds: [{
               "name": "WOW",
               "id": "974740386838904842",
               "volume": 0.7512562870979309,
               "user": findByProps("getCurrentUser").getCurrentUser()
-          },
-          {
+            },
+            {
               "name": "LEGENDARY",
               "id": "974741192350793788",
               "volume": 0.6370886564254761,
               "user": findByProps("getCurrentUser").getCurrentUser()
-          },
-          {
+            },
+            {
               "name": "PENTAKILL",
               "id": "974741263125446666",
               "volume": 0.6180904507637024,
               "user": findByProps("getCurrentUser").getCurrentUser()
-          },
-          {
+            },
+            {
               "name": "STUCK IN TIME",
               "id": "974742006561648660",
               "volume": 0.8253953456878662,
               "user": findByProps("getCurrentUser").getCurrentUser()
-          },
-          {
+            },
+            {
               "name": "EXALT",
               "id": "974744789675311134",
               "volume": 1,
               "user": findByProps("getCurrentUser").getCurrentUser()
-          },
-          {
+            },
+            {
               "name": "YEAAAHAHAHAHA",
               "id": "974747896576618597",
               "volume": 0.4888227880001068,
               "user": findByProps("getCurrentUser").getCurrentUser()
-          },
-          {
+            },
+            {
               "name": "JEBAIT",
               "id": "974830083783151706",
               "volume": 0.8542713522911072,
               "user": findByProps("getCurrentUser").getCurrentUser()
-          },
-          {
+            },
+            {
               "name": "BRUH",
               "id": "974830704078770196",
               "volume": 0.6005024909973145,
               "user": findByProps("getCurrentUser").getCurrentUser()
-          },
-          {
+            },
+            {
               "name": "PH",
               "id": "974830840028729405",
               "volume": 0.7010050415992737,
               "user": findByProps("getCurrentUser").getCurrentUser()
-          },
-          {
+            },
+            {
               "name": "SPONGEBOB",
               "id": "974831253075398727",
               "volume": 0.7512562870979309,
               "user": findByProps("getCurrentUser").getCurrentUser()
-          },
-          {
+            },
+            {
               "name": "JEBAIT 2",
               "id": "974831506239389726",
               "volume": 1,
               "user": findByProps("getCurrentUser").getCurrentUser()
-          },
-          {
+            },
+            {
               "name": "You've Got Mail",
               "id": "976271935329693716",
               "volume": 1,
               "user": findByProps("getCurrentUser").getCurrentUser()
-          },{
+            }, {
               "name": "raze ult troll",
               "id": "974704741676367904",
               "volume": 0.5941102504730225,
               "user": findByProps("getCurrentUser").getCurrentUser()
-          },
-          {
+            },
+            {
               "name": "boom",
               "id": "974706412716445747",
               "volume": 0.6025100946426392,
               "user": findByProps("getCurrentUser").getCurrentUser()
-          },
-          {
+            },
+            {
               "name": "hello there ig",
               "id": "974712111756365884",
               "volume": 1.0,
               "user": findByProps("getCurrentUser").getCurrentUser()
-          },
-          {
-              "name": "laugh",
-              "id": "974713720074821702",
-              "volume": 0.7063257694244385,
-              "user": findByProps("getCurrentUser").getCurrentUser()
-          },
-          {
-              "name": "gong",
-              "id": "974891021198557214",
-              "volume": 1.0,
-              "user": findByProps("getCurrentUser").getCurrentUser()
-          },
-          {
-              "name": "sus",
-              "id": "974891909107564545",
-              "volume": 1.0,
-              "user": findByProps("getCurrentUser").getCurrentUser()
-          },
-          {
-              "name": "kill",
-              "id": "974892667597115452",
-              "volume": 1.0,
-              "user": findByProps("getCurrentUser").getCurrentUser()
-          },
-          {
+            },
+            {
               "name": "Well Excuse Me Princess",
               "id": "1002030051908390972",
               "volume": 1.0,
               "user": findByProps("getCurrentUser").getCurrentUser()
-          }
-      ]
-      })})
+            }
+          ]
+        })
+      })
 
       // Avatar Decorations
-      avatarDecos = instead("getAvatarDecorationURL",findByPropsAll("getAvatarDecorationURL")[1], (args) => {
-        if (args[0].userId == findByProps("getCurrentUser").getCurrentUser().id) { 
-        return "https://canary.discord.com/assets/3e86ad03bf042a6a02a7c9b04253f03b.svg"
-    }
-    // Still get avatar deco if the user has one applied (staff)
-    var e = args[0]
-    var t = e.userId
-    var n = e.avatarDecoration
-    var r = e.size;
-    if (null != n) {
-        var i, o = window.GLOBAL_ENV.CDN_HOST;
-        i = null != o ? location.protocol + "//" + o + "/avatar-decorations/" + t + "/" + n + ".png" : location.protocol + window.GLOBAL_ENV.API_ENDPOINT + u.Endpoints.AVATAR_DECORATIONS(t, n, "png");
-        return i
-    }
-    });
+      avatarDecos = instead("getAvatarDecorationURL", findByPropsAll("getAvatarDecorationURL")[1], (args) => {
+        if (args[0].userId == findByProps("getCurrentUser").getCurrentUser().id) {
+          return "https://canary.discord.com/assets/3e86ad03bf042a6a02a7c9b04253f03b.svg"
+        }
+        // Still get avatar deco if the user has one applied (staff)
+        var e = args[0]
+        var t = e.userId
+        var n = e.avatarDecoration
+        var r = e.size;
+        if (null != n) {
+          var i, o = window.GLOBAL_ENV.CDN_HOST;
+          i = null != o ? location.protocol + "//" + o + "/avatar-decorations/" + t + "/" + n + ".png" : location.protocol + window.GLOBAL_ENV.API_ENDPOINT + u.Endpoints.AVATAR_DECORATIONS(t, n, "png");
+          return i
+        }
+      });
     },
-
-
+    
     onUnload() {
       Sessions()
       Passport()
