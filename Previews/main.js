@@ -1,14 +1,6 @@
-import {
-  findByProps,
-  modules,
-  findByPropsAll
-} from '@cumcord/modules/webpack';
-import {
-  instead
-} from '@cumcord/patcher';
-import {
-  dispatch
-} from '@cumcord/modules/common/FluxDispatcher';
+import { findByProps ,modules ,findByPropsAll } from '@cumcord/modules/webpack';
+import { instead, after } from '@cumcord/patcher';
+import { dispatch } from '@cumcord/modules/common/FluxDispatcher';
 const msgReqsVars = findByProps("getMessageRequestsCount").__getLocalVars();
 
 export default () => {
