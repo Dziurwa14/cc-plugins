@@ -6,6 +6,9 @@ export default () => {
   let Activities
   return {
     onLoad() {
+      // Hacky way to fix crashing sometimes
+      dispatch({type: "DEVELOPER_TEST_MODE_AUTHORIZATION_SUCCESS",applicationId: "976052223358406656",originURL: `https://976052223358406656.discordsays.com/`});
+      Object.defineProperty(findByProps("testModeEmbeddedApplicationId"),"testModeApplicationId", {value: undefined});
       Activities = instead('fetchShelf', findByProps("fetchShelf"), () => {
         return dispatch({
              type: "EMBEDDED_ACTIVITY_FETCH_SHELF_SUCCESS",
