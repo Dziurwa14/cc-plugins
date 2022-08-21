@@ -13,6 +13,7 @@ export default () => {
   let soundboardSounds
   let avatarDecos
   let assignRole
+  let buildOverride
   return {
     onLoad() {
       // Sessions
@@ -776,7 +777,7 @@ export default () => {
                 "expires_on": null,
                 "new_until": null,
                 "nitro_requirement": false,
-                "premium_tier_level": 0
+                "premium_tier_level": 1
             },
             {
                 "application_id": "832025144389533716",
@@ -804,7 +805,7 @@ export default () => {
                 "expires_on": null,
                 "new_until": null,
                 "nitro_requirement": false,
-                "premium_tier_level": 1
+                "premium_tier_level": 0
             },
             {
                 "application_id": "879863686565621790",
@@ -843,6 +844,13 @@ export default () => {
             },
             {
               "application_id": "950505761862189096",
+              "expires_on": null,
+              "new_until": null,
+              "nitro_requirement": false,
+              "premium_tier_level": 0
+            },
+            {
+              "application_id": "879863976006127627",
               "expires_on": null,
               "new_until": null,
               "nitro_requirement": false,
@@ -985,6 +993,9 @@ export default () => {
           return i
         }
       });
+
+      buildOverride = after('getPublicBuildOverrideLink',findByProps("getPublicBuildOverrideLink"),() => {return {
+        url:"https://discord.com/__development/link?s=BfVH8Z8qL1z5eLXlAUJT5uqob9jkwn937VrnvSL5kXg%3D.eyJ0YXJnZXRCdWlsZE92ZXJyaWRlIjp7ImRpc2NvcmRfd2ViIjp7InR5cGUiOiJicmFuY2giLCJpZCI6ImRpc2NvcmQvYXBwIn19LCJyZWxlYXNlQ2hhbm5lbCI6bnVsbCwidmFsaWRGb3JVc2VySWRzIjpbXSwiYWxsb3dMb2dnZWRPdXQiOmZhbHNlLCJleHBpcmVzQXQiOiJTdW4sIDI4IEphbiAyMTM3IDAxOjU1OjA3IEdNVCJ9",error:!1}})
     },
     
     onUnload() {
@@ -998,6 +1009,7 @@ export default () => {
       soundboardSounds()
       avatarDecos()
       assignRole()
+      buildOverride()
     }
   }
 }
