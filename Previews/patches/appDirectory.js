@@ -2,10 +2,10 @@ import { findByProps } from '@cumcord/modules/webpack';
 import { after,instead } from '@cumcord/patcher';
 
 export default function appDirectory() {
-return let cat = [{id: 1,name: "Productivity"},{id: 2,name: "Creative"},{id: 3,name: "Social"},{id: 4,name: "Education"},{id: 5,name: "Science & Tech"},{id: 6,name: "Entertainment"},{id: 7,name: "Music"},{id: 8,name: "Gaming"},{id: 9,name: "Fun"},{id: 10,name: "Admin"}]
-let guildG = {"id": "964557033661669416","name": "Good University","icon": "21ab49cb1e40ac24e45359fbd179e059","description": null,"splash": "9b5287deef2d183e4c53f2b0229c312b","discovery_splash": "a6e50ca6bf96ab6e3d29c3b21d97d452","features": ["TEXT_IN_VOICE_ENABLED", "MEMBER_VERIFICATION_GATE_ENABLED", "PREVIEW_ENABLED", "NEWS", "ANIMATED_ICON", "AUTO_MODERATION", "THREE_DAY_THREAD_ARCHIVE", "COMMUNITY", "INVITE_SPLASH"],"approximate_member_count": 26,"approximate_presence_count": 12,"emojis": [],"stickers": []}
-let guildP = {"id": "603970300668805120", "name": "Discord Previews", "icon": "f1ff1f01305ebf62060795d3072c3b95", "description": "Your #1 source for the latest Discord news, features, experiments, and updates.", "splash": "5fd752c14b75a6bbf00a544a4875676f", "discovery_splash": "73273f52524b25f60887f5800aec3b3b", "features": ["NEW_THREAD_PERMISSIONS", "TEXT_IN_VOICE_ENABLED", "PREVIEW_ENABLED", "THREADS_ENABLED_TESTING", "COMMUNITY", "MEMBER_PROFILES", "THREADS_ENABLED", "SEVEN_DAY_THREAD_ARCHIVE", "ROLE_ICONS", "AUTO_MODERATION", "INVITE_SPLASH", "PRIVATE_THREADS", "THREE_DAY_THREAD_ARCHIVE", "ENABLED_DISCOVERABLE_BEFORE", "NEWS", "DISCOVERABLE", "WELCOME_SCREEN_ENABLED", "MEMBER_VERIFICATION_GATE_ENABLED", "BANNER", "ANIMATED_ICON"], "approximate_member_count": 1415, "approximate_presence_count": 669, "emojis": [], "stickers": []}
-let applicationP = {
+const cat = [{id: 1,name: "Productivity"},{id: 2,name: "Creative"},{id: 3,name: "Social"},{id: 4,name: "Education"},{id: 5,name: "Science & Tech"},{id: 6,name: "Entertainment"},{id: 7,name: "Music"},{id: 8,name: "Gaming"},{id: 9,name: "Fun"},{id: 10,name: "Admin"}]
+const guildG = {"id": "964557033661669416","name": "Good University","icon": "21ab49cb1e40ac24e45359fbd179e059","description": null,"splash": "9b5287deef2d183e4c53f2b0229c312b","discovery_splash": "a6e50ca6bf96ab6e3d29c3b21d97d452","features": ["TEXT_IN_VOICE_ENABLED", "MEMBER_VERIFICATION_GATE_ENABLED", "PREVIEW_ENABLED", "NEWS", "ANIMATED_ICON", "AUTO_MODERATION", "THREE_DAY_THREAD_ARCHIVE", "COMMUNITY", "INVITE_SPLASH"],"approximate_member_count": 26,"approximate_presence_count": 12,"emojis": [],"stickers": []}
+const guildP = {"id": "603970300668805120", "name": "Discord Previews", "icon": "f1ff1f01305ebf62060795d3072c3b95", "description": "Your #1 source for the latest Discord news, features, experiments, and updates.", "splash": "5fd752c14b75a6bbf00a544a4875676f", "discovery_splash": "73273f52524b25f60887f5800aec3b3b", "features": ["NEW_THREAD_PERMISSIONS", "TEXT_IN_VOICE_ENABLED", "PREVIEW_ENABLED", "THREADS_ENABLED_TESTING", "COMMUNITY", "MEMBER_PROFILES", "THREADS_ENABLED", "SEVEN_DAY_THREAD_ARCHIVE", "ROLE_ICONS", "AUTO_MODERATION", "INVITE_SPLASH", "PRIVATE_THREADS", "THREE_DAY_THREAD_ARCHIVE", "ENABLED_DISCOVERABLE_BEFORE", "NEWS", "DISCOVERABLE", "WELCOME_SCREEN_ENABLED", "MEMBER_VERIFICATION_GATE_ENABLED", "BANNER", "ANIMATED_ICON"], "approximate_member_count": 1415, "approximate_presence_count": 669, "emojis": [], "stickers": []}
+const applicationP = {
     "id": "981666126230618162",
     "name": "Discord Previews",
     "icon": "c9400752b9e76ff3404381929732704e",
@@ -49,7 +49,7 @@ let applicationP = {
         }]
       }
   }
-let applicationG = {
+const applicationG = {
   "guild": guildG,
   "directory_entry": {
     "carousel_items": [{
@@ -107,7 +107,7 @@ let applicationG = {
   "categories": cat,
   "type": -1
 }
-let applicationData = {data:applicationG}
+const applicationData = {data:applicationG}
  const collections = [{
       "id": "815369174096412693",
       "position": 0,
@@ -163,13 +163,13 @@ let applicationData = {data:applicationG}
         "application": applicationP
       }]
     }]
-    j = new Promise((resolve) => {
+   const j = new Promise((resolve) => {
         resolve(applicationG);
     });
-    g = new Promise((resolve) => {
+   const g = new Promise((resolve) => {
         resolve(applicationP);
     });
-after('getApplication',findByProps("getRecommendedApplications"), (args) => {if(args[0] == applicationP.id) {return g} if (args[0] == applicationG.id) {return j}})
+retuen after('getApplication',findByProps("getRecommendedApplications"), (args) => {if(args[0] == applicationP.id) {return g} if (args[0] == applicationG.id) {return j}})
     instead('getCategories',findByProps("getRecommendedApplications"), () => {return cat}),
     instead('getRecommendedApplications',findByProps("getRecommendedApplications"), () => {return {applications: [applicationP,applicationG]}}),
     instead('getSimilarApplications',findByProps("getRecommendedApplications"), () => {return {applications: [applicationP,applicationG]}}),
