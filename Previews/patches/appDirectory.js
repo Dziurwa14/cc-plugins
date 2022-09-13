@@ -169,7 +169,7 @@ let applicationData = {data:applicationG}
     g = new Promise((resolve) => {
         resolve(applicationP);
     });
-    after('getApplication',findByProps("getRecommendedApplications"), (args) => {if(args[0] == applicationP.id) {return g} if (args[0] == applicationG.id) {return j}})
+   return after('getApplication',findByProps("getRecommendedApplications"), (args) => {if(args[0] == applicationP.id) {return g} if (args[0] == applicationG.id) {return j}})
     instead('getCategories',findByProps("getRecommendedApplications"), () => {return cat}),
     instead('getRecommendedApplications',findByProps("getRecommendedApplications"), () => {return {applications: [applicationP,applicationG]}}),
     instead('getSimilarApplications',findByProps("getRecommendedApplications"), () => {return {applications: [applicationP,applicationG]}}),
