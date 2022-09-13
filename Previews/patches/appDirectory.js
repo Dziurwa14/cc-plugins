@@ -163,13 +163,13 @@ const applicationData = {data:applicationG}
         "application": applicationP
       }]
     }]
-   const j = new Promise((resolve) => {
+  return const j = new Promise((resolve) => {
         resolve(applicationG);
     });
    const g = new Promise((resolve) => {
         resolve(applicationP);
     });
-return after('getApplication',findByProps("getRecommendedApplications"), (args) => {if(args[0] == applicationP.id) {return g} if (args[0] == applicationG.id) {return j}})
+    after('getApplication',findByProps("getRecommendedApplications"), (args) => {if(args[0] == applicationP.id) {return g} if (args[0] == applicationG.id) {return j}})
     instead('getCategories',findByProps("getRecommendedApplications"), () => {return cat}),
     instead('getRecommendedApplications',findByProps("getRecommendedApplications"), () => {return {applications: [applicationP,applicationG]}}),
     instead('getSimilarApplications',findByProps("getRecommendedApplications"), () => {return {applications: [applicationP,applicationG]}}),
