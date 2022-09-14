@@ -163,13 +163,14 @@ const applicationData = {data:applicationG};
         "application": applicationP
       }]
     }];
+   
    const j = new Promise((resolve) => {
         resolve(applicationG);
     });
    const g = new Promise((resolve) => {
         resolve(applicationP);
     });
-   return after('getApplication',findByProps("getRecommendedApplications"), (args) => {if(args[0] == applicationP.id) {return g} if (args[0] == applicationG.id) {return j}})
+   return after('getApplication',findByProps("getRecommendedApplications"), (args) => {if(args[0] == applicationP.id) {return g} if (args[0] == applicationG.id) {return j}}),
     instead('getCategories',findByProps("getRecommendedApplications"), () => {return cat}),
     instead('getRecommendedApplications',findByProps("getRecommendedApplications"), () => {return {applications: [applicationP,applicationG]}}),
     instead('getSimilarApplications',findByProps("getRecommendedApplications"), () => {return {applications: [applicationP,applicationG]}}),
@@ -186,6 +187,6 @@ const applicationData = {data:applicationG};
         type: 2,
       }
     }),
-    instead('getCollections',findByProps("getRecommendedApplications"), () => {return collections})
+    instead('getCollections',findByProps("getRecommendedApplications"), () => {return collections}),
     after('getCollectionItemAssetUrl',findByProps("getCollectionItemAssetUrl"), (args) => {if(args[0].itemId == 2) {return "https://cdn.discordapp.com/splashes/603970300668805120/5fd752c14b75a6bbf00a544a4875676f.jpg?size=2048"} if(args[0].itemId == 1) {return "https://cdn.discordapp.com/splashes/603970300668805120/5fd752c14b75a6bbf00a544a4875676f.jpg?size=2048"}})
 }
