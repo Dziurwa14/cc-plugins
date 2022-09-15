@@ -8,19 +8,14 @@ import profileViews from './patches/profileViews';
 import activities from './patches/activities';
 import appDirectory from './patches/appDirectory';
 
-const patches = [
-  securityKey,
-  soundboard,
-  avatarDecos,
-  msgRequests,
-  buildOverride,
-  passports,
-  profileViews,
-  activities,
-  appDirectory
-];
-
-
 export function onUnload() {
-  _.forEachRight(patches, (p) => p());
+  securityKey(),
+  soundboard(),
+  avatarDecos(),
+  msgRequests(),
+  buildOverride(),
+  passports(),
+  profileViews(),
+  activities(),
+  appDirectory()
 };
