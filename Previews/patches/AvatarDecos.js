@@ -1,8 +1,8 @@
 import { instead } from '@cumcord/patcher';
-import { findByProps, findByPropsAll } from '@cumcord/modules/webpack';
+import { findByProps } from '@cumcord/modules/webpack';
 
 export default function avatarDecos() {
-    return instead("getAvatarDecorationURL", findByPropsAll("getAvatarDecorationURL")[1], (args) => {
+    return instead("getAvatarDecorationURL", findByProps("getAvatarDecorationURL","default"), (args) => {
         if (args[0].userId == findByProps("getCurrentUser").getCurrentUser().id) {
           return "https://canary.discord.com/assets/3e86ad03bf042a6a02a7c9b04253f03b.svg"
         }

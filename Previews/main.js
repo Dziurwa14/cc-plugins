@@ -1,13 +1,15 @@
-import soundboard from './patches/Soundboard.js';
-import avatarDecos from './patches/AvatarDecos.js';
-import msgRequests from './patches/MessageRequests.js';
-import buildOverride from './patches/buildOverride.js';
-import passports from './patches/passports.js';
-import profileViews from './patches/profileViews.js';
-import activities from './patches/activities.js';
-import appDirectory from './patches/appDirectory.js';
+import securityKey from './patches/securityKey';
+import soundboard from './patches/Soundboard';
+import avatarDecos from './patches/AvatarDecos';
+import msgRequests from './patches/MessageRequests';
+import buildOverride from './patches/buildOverride';
+import passports from './patches/passports';
+import profileViews from './patches/profileViews';
+import activities from './patches/activities';
+import appDirectory from './patches/appDirectory';
 
 const patches = [
+  securityKey,
   soundboard,
   avatarDecos,
   msgRequests,
@@ -16,8 +18,9 @@ const patches = [
   profileViews,
   activities,
   appDirectory
-]
+];
+
 
 export function onUnload() {
   _.forEachRight(patches, (p) => p());
-}
+};
