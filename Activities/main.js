@@ -102,9 +102,14 @@ export default () => {
       "new_until": null,
       "nitro_requirement": false,
       "premium_tier_level": 0
-    }
-]
-const j = new Promise((r) => {r(h)});
+    },
+    {
+    "application_id": "1006584476094177371",
+    "expires_on": null,
+    "new_until": null,
+    "nitro_requirement": false,
+    "premium_tier_level": 1
+}]
   return {
     onLoad() {
       Activities = instead('fetchShelf', findByProps("fetchShelf"), () => {
